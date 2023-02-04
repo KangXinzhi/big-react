@@ -73,3 +73,6 @@ pnpm i commitlint @commitlint/cli @commitlint/config-conventional -D -w
 
 npx husky add .husky/commit-msg "npx --no-install commitlint -e $HUSKY_GIT_PARAMS"
 ```
+
+ts 配置
+新建 tsconfig.json

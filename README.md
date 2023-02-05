@@ -120,3 +120,36 @@ import { jsx as _jsx } from "react/jsx-runtime";
 });
 
 ```
+
+## 2-2 实现 JSX 打包
+
+rollup plugins
+
+```
+// ts转js
+pnpm install -D -w rollup-plugin-typescript2
+
+// commonjs
+pnpm install -D -w @rollup/plugin-commonjs
+```
+
+```
+// 每次打包到dist之前先删除
+pnpm i -D -w rimraf
+```
+
+```
+// 打包文件中生产package.json
+pnpm i -D -w rollup-plugin-generate-package-json
+```
+
+## 2-3 JSX 转换 - 实现第一种调试方式
+
+使用 pnpm link 验证
+
+1. 进入打包后 dist 的 react 文件夹中执行**pnpm link --global**，将其变成全局 pnpm 依赖的 react
+2. cra 创建一个 react 项目
+3. 在项目中**pnpm link react --global**
+
+优点：可以模拟实际导入情况
+缺点：略显繁琐，更期望热更新

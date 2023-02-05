@@ -4,7 +4,7 @@ import {
 	Key,
 	Ref,
 	Props,
-	ReactElement,
+	ReactElementType,
 	ElementType
 } from 'shared/ReactTypes';
 // ReactElement
@@ -14,7 +14,7 @@ const ReactElement = function (
 	key: Key,
 	ref: Ref,
 	props: Props
-): ReactElement {
+): ReactElementType {
 	const element = {
 		$$typeof: REACT_ElEMENT_TYPE,
 		type,
@@ -64,5 +64,5 @@ export const jsx = (type: ElementType, config: any, ...maybeChildren: any) => {
 	return ReactElement(type, key, ref, props);
 };
 
-// 实际上的jsxDEV有一些额外的检查，这里跳过
+// 实际上的jsxDEV和jsx不同，开发环境的jsxDEV有一些额外的检查，这里跳过
 export const jsxDEV = jsx;

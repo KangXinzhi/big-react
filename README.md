@@ -74,5 +74,49 @@ pnpm i commitlint @commitlint/cli @commitlint/config-conventional -D -w
 npx husky add .husky/commit-msg "npx --no-install commitlint -e $HUSKY_GIT_PARAMS"
 ```
 
-ts 配置
+ts 配置  
 新建 tsconfig.json
+
+项目打包工具  
+rollup
+
+```
+pnpm i -D -w rollup
+```
+
+**day2 20230205**
+
+# 二、JSX 转换
+
+## 2-1 实现 JSX
+
+React 项目结构：
+
+- react （宿主环境无关的公用方法）
+- react-reconciler （协调器）
+- 各种宿主环境的包
+- shared （公共辅助方法，宿主环境无关）
+
+jsx 转换属于 react 包
+
+jsx 转换
+
+```
+// 在react17之前呢调用React.createElement方法
+
+<div>123</div>
+
+// babel 转换
+React.createElement("div",null,123)
+
+
+```
+
+```
+//在react17之后呢调用jsx-runtime方法
+import { jsx as _jsx } from "react/jsx-runtime";
+/*#__PURE__*/_jsx("div", {
+  children: "123"
+});
+
+```

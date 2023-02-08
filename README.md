@@ -218,3 +218,33 @@ JSX 消费的顺序：
 
 - 递：对应的 beginWork
 - 归：对应的 completeWork
+
+**day4 20230208**
+
+# 四、如何触发更新-实现状态更新机制
+
+## React 中常见的触发更新的方式：
+
+- ReactDom.createRoot().render
+  (或老板的 ReactDom.render)
+- this.setState
+- useState 的 dispatch 方法
+  我们希望实现一套统一的更新机制，他的特点是：
+- 兼容上述触发更新的方式
+- 方便后续扩展（优先级机制...）
+
+## 更新机制的组成部分
+
+- 代表更新的数据结构 -- Update
+- 消费 update 的数据结构 -- UpdateQueue  
+  ![updateQueue](./assest/updateQueue.png)
+
+接下来的工作包括：
+
+- 实现 mount 时调用的 API
+- 将该 API 接入上诉更新机制
+
+需要考虑的事情：
+
+- 更新可能发生于任意组件，而更新流程是从根节点递归的
+- 需要一个统一的根节点保存通用信息

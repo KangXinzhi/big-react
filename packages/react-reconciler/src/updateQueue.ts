@@ -1,4 +1,5 @@
 import { Action } from 'shared/ReactTypes';
+import { FiberNode } from './fiber';
 
 export interface Update<State> {
 	action: Action<State>;
@@ -16,18 +17,18 @@ export const createUpdate = <State>(action: Action<State>): Update<State> => {
 	};
 };
 
-export const createUpdateQueue = <Action>(): UpdateQueue<Action> => {
+export const createUpdateQueue = <State>(): UpdateQueue<State> => {
 	return {
 		shared: {
 			pending: null
 		}
-	} as UpdateQueue<Action>;
+	} as UpdateQueue<State>;
 };
 
 // 向updateQueue中增加update
-export const enqueueUpdate = <Action>(
-	updateQueue: UpdateQueue<Action>,
-	update: Update<Action>
+export const enqueueUpdate = <State>(
+	updateQueue: UpdateQueue<State>,
+	update: Update<State>
 ) => {
 	updateQueue.shared.pending = update;
 };

@@ -248,3 +248,25 @@ JSX 消费的顺序：
 
 - 更新可能发生于任意组件，而更新流程是从根节点递归的
 - 需要一个统一的根节点保存通用信息
+
+**day5 20230212**
+
+# 五、初探 mount 流程
+
+更新流程的目的：
+
+- 生成 wip fiberNode 树
+- 标记副作用 flags
+
+更新流程的步骤：
+
+- 递：beginWork
+- 归：completeWork
+
+## beginWork
+
+- Placement（与结构变化相关）
+
+- ChildDeletion（与结构变化相关）
+
+- Update（与属性变化相关）
